@@ -1,5 +1,12 @@
-local rt = require("rust-tools")
-local mason_registry = require("mason-registry")
+local status_ok, rt = pcall(require, "rust-tools")
+if not status_ok then
+	return
+end
+
+local status_ok, mason_registry = pcall(require, "mason-registry")
+if not status_ok then
+	return
+end
 
 local codelldb = mason_registry.get_package("codelldb")
 local extension_path = codelldb:get_install_path() .. "/extension/"
